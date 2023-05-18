@@ -1,0 +1,18 @@
+<ion-card *ngFor="let task of tasks, index as i">
+    <ion-card-header>
+        <ion-card-title>
+            {{task.info.title}}
+            <ion-icon id="open-description-trigger-{{i}}" name="information-circle-outline" style="float: right;" color="secondary"></ion-icon>
+            <ion-popover trigger="open-description-trigger-{{i}}" triggerAction="click">
+                <ng-template>
+                    <p class="ion-padding">{{task.info.description}}</p>
+                </ng-template>
+            </ion-popover>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ng-container *ngComponentOutlet="task.component; ndcDynamicInputs: {core:core}"></ng-container>
+    </ion-card-content>
+</ion-card>
+<!--<ion-spinner name="circles" *ngIf="isLoading">Waiting for components to load...</ion-spinner>
+    Would have liked to do, but dunno how-->

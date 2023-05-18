@@ -1,0 +1,7 @@
+{
+  "name": "lws",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
