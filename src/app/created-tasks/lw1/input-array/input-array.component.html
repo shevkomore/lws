@@ -1,0 +1,11 @@
+<!--All that is in one line:-->
+
+<!--Text before first input-->
+<span>{{text[0]}}</span>
+<!--Container for repeating elements-->
+<span *ngFor="let item of rawInputs; index as i">
+  <!--Input-->                                            <!--This \/ might break; if it did, try rawInputs[i]-->
+  <ion-input type="{{inputType}}" [clearOnEdit]="true" [(ngModel)]="item" (ionChange)="update()"></ion-input>
+  <!--Text after input-->
+  <span>{{text[i+1]}}</span>
+</span>
