@@ -1,0 +1,17 @@
+.number-square{
+    border: 2px solid black;
+    border-radius: 0.3em;
+    min-width: 3em;
+    height: 3em;
+    padding: 0.4em;
+    background-size: 24em 24em !important;
+    animation: MoveGradient 72s linear infinite;
+}
+@keyframes MoveGradient{
+    0%{background-position: 0em -12em}
+    100%{background-position: -12em 0em}
+}
+.text-no-padding{
+    padding: 0px;
+    margin:0px;
+}

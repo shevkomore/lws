@@ -1,0 +1,22 @@
+<ion-item>
+  <app-input-array [surroundingText]="['[',':',']']" (onChange)="update($event)"></app-input-array>
+</ion-item>
+<ion-item>
+  <ion-grid>
+    <ion-row>
+      <span>
+        {{results[0]}} чисел, які кратні 44
+      </span>
+    </ion-row>
+    <ion-row>
+      <span>
+        {{results[1]}} непарних чисел
+      </span>
+    </ion-row>
+    <ion-row>
+      <span>
+        {{results[2]}} чисел, які  при діленні на 5 дають в остачі 3
+      </span>
+    </ion-row>
+  </ion-grid>
+</ion-item>

@@ -1,0 +1,6 @@
+<ion-item>
+  <app-input-array [surroundingText]="['','+','+','']" (onChange)="update($event)"></app-input-array>
+</ion-item>
+<ion-item class="text">
+  = {{result | number : '1.0-4' | showNaN}}
+</ion-item>

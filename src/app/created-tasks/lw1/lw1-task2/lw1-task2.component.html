@@ -1,0 +1,7 @@
+<ion-item>
+  <app-input-array [surroundingText]="['','+','+','']" (onChange)="update($event)"></app-input-array>
+</ion-item>
+<ion-item>
+  <span class="text" style="margin-right: 2em;"> = {{result}}</span>
+  <ion-icon class="short-number" size="large" [name]="isCubed ? 'cube-outline' : 'remove-outline'"></ion-icon>
+</ion-item>
