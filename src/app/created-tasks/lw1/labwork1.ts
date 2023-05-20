@@ -3,6 +3,7 @@ import { TaskType } from "src/app/task-groups/task";
 import { TaskGroup } from "src/app/task-groups/task-group";
 import { Lw1Task1Component } from "./lw1-task1/lw1-task1.component";
 import { Lw1Task2Component } from "./lw1-task2/lw1-task2.component";
+import { Lw1Task3Component } from "./lw1-task3/lw1-task3.component";
 
 export class Labwork1 extends TaskGroup{
     public override get Label(): InfoLabel {
@@ -30,6 +31,15 @@ export class Labwork1 extends TaskGroup{
                     +"В іншому випадку – суму."
                 },
                 component: Lw1Task2Component
+            },
+            {
+                info:{
+                    title: 'Завдання 2',
+                    description: "На заданому проміжку чисел [a,b]"
+                    +"знайдіть кількість чисел, які кратні 44,"
+                    +"непарні і при діленні на 5 дають в остачі 3."
+                },
+                component: Lw1Task3Component
             }
         ]
     }
