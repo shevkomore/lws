@@ -1,14 +1,12 @@
 <ion-grid>
   <ion-row>
-    <span class="enlarged-text">
-      {{surroundingText[0]}}
-    </span>
-    <ng-template ngFor let-item [ngForOf]="rawInputs" let-i="index">
-      <ion-input class="enlarged-text input short" type="number" [clearOnEdit]="true"
-       [(ngModel)]="rawInputs[i]" (ionChange)="update()"
+    <ng-template ngFor let-item [ngForOf]="_surroundingText.sort(sortByIndex)" let-i="index" [ngForTrackBy]="extractIndex">
+      <span class="enlarged-text" [innerHTML]="item.value"></span>
+      <ion-input *ngIf="i < rawInputs.length"
+       class="enlarged-text input short" type="number" [clearOnEdit]="true"
+       [ngModel]="rawInputs[i]" (change)="update(i, $event.target)"
        onkeypress="this.style='width: '+(Math.max(2,this.value.toString().length)+2)+'ch;'"
        onclick="this.style='width: '+(Math.max(2,this.value.toString().length)+2)+'ch;'"></ion-input>
-      <span class="enlarged-text">{{surroundingText[i+1]}}</span>
     </ng-template>
   </ion-row>
 </ion-grid>
