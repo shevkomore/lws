@@ -5,7 +5,7 @@ import { Labwork1 } from '../labwork1';
 import { Task } from 'src/app/task-groups/task'
 import { InputArrayComponent } from '../input-array/input-array.component';
 import { InputArrayEvent } from '../input-array/input-array-event';
-import { ShowNanPipe } from './show-nan-pipe';
+import { ShowNanPipe } from '../show-nan-pipe';
 
 @Component({
   selector: 'app-lw1-task1',
@@ -23,7 +23,6 @@ export class Lw1Task1Component extends Task<Labwork1> {
   update(event:InputArrayEvent){
     console.log(event)
     let nums = event.data.map(el => Number.parseFloat(el))
-    console.log(nums)
     let positives = nums.filter(n => n>=0).length, negatives = nums.filter(n=>n<0).length
     if(negatives == 0){
       event.source.fillTextRepeatingMiddle('','+','')
@@ -45,7 +44,6 @@ export class Lw1Task1Component extends Task<Labwork1> {
       // add all of them, left to right, then divide by length
       this.result = nums.reduce((sum, next) => sum+=next)/nums.length
     }
-    console.log(this.result)
   }
 
 }
