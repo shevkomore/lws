@@ -30,4 +30,12 @@ export class InputArrayComponent implements OnInit {
   update(){
     this.onChange.next(Array.from(this.rawInputs))
   }
+
+  fillTextRepeatingMiddle(before: string, middle: string, after: string){
+    if(this.surroundingText.length > 0)
+      this.surroundingText[0] = before
+    this.surroundingText.fill(middle, 1,-2)
+    if(this.surroundingText.length > 1)
+      this.surroundingText[-1] = after
+  }
 }
