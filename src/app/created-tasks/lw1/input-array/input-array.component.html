@@ -1,14 +1,14 @@
 <ion-grid>
-  <ion-row class="ion-text-nowrap ion-justify-content-start">
+  <ion-row>
     <span class="enlarged-text">
       {{surroundingText[0]}}
     </span>
-    <span *ngFor="let item of rawInputs; index as i">
-      <ion-input class="enlarged-text input-border short" type="number" [clearOnEdit]="true" [(ngModel)]="rawInputs[i]" (ionChange)="update()"></ion-input>
+    <ng-template ngFor let-item [ngForOf]="rawInputs" let-i="index">
+      <ion-input class="enlarged-text input short" type="number" [clearOnEdit]="true"
+       [(ngModel)]="rawInputs[i]" (ionChange)="update()"
+       onkeypress="this.style='width: '+(Math.max(2,this.value.toString().length)+2)+'ch;'"
+       onclick="this.style='width: '+(Math.max(2,this.value.toString().length)+2)+'ch;'"></ion-input>
       <span class="enlarged-text">{{surroundingText[i+1]}}</span>
-    </span>
+    </ng-template>
   </ion-row>
 </ion-grid>
-<p>a</p>
-<p>b</p>
-<p>v</p>
