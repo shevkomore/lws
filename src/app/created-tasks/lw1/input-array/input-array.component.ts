@@ -1,34 +1,34 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, OnInit, Output } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-input-array',
   templateUrl: './input-array.component.html',
   styleUrls: ['./input-array.component.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone: true,
+  imports: [IonicModule, CommonModule]
 })
-export class InputArrayComponent  implements OnInit {
+export class InputArrayComponent implements OnInit {
   @Input()
-  inputType: string = "text"
-  @Input()
-  n_inputs:number = 0
+  surroundingText: string[] = [""]
 
-  rawInputs: string[] = []
-  inputs: Subject<string[]> = new Subject()
-  //@Input()   possibly??
-  texts: string[] = []
+  rawInputs: any[] = []
+  @Output()
+  onChange: Subject<string[]> = new Subject()
 
   constructor() { }
 
   ngOnInit() {
-    if(this.inputType = "number")
-      this.rawInputs.fill("0", 0, this.n_inputs)
-    else this.rawInputs.fill("", 0, this.n_inputs)
-
-    this.texts.fill("", 0, this.n_inputs+1)
+    let n_inputs = this.surroundingText.length - 1
+    this.rawInputs = new Array(n_inputs).fill("0")
     this.update()
+    console.log(this.surroundingText)
   }
 
   update(){
-    this.inputs.next(Array.from(this.rawInputs))
+    this.onChange.next(Array.from(this.rawInputs))
   }
 }

@@ -1,11 +1,14 @@
-<!--All that is in one line:-->
-
-<!--Text before first input-->
-<span>{{text[0]}}</span>
-<!--Container for repeating elements-->
-<span *ngFor="let item of rawInputs; index as i">
-  <!--Input-->                                            <!--This \/ might break; if it did, try rawInputs[i]-->
-  <ion-input type="{{inputType}}" [clearOnEdit]="true" [(ngModel)]="item" (ionChange)="update()"></ion-input>
-  <!--Text after input-->
-  <span>{{text[i+1]}}</span>
-</span>
+<ion-grid>
+  <ion-row class="ion-text-nowrap ion-justify-content-start">
+    <span class="enlarged-text">
+      {{surroundingText[0]}}
+    </span>
+    <span *ngFor="let item of rawInputs; index as i">
+      <ion-input class="enlarged-text input-border short" type="number" [clearOnEdit]="true" [(ngModel)]="rawInputs[i]" (ionChange)="update()"></ion-input>
+      <span class="enlarged-text">{{surroundingText[i+1]}}</span>
+    </span>
+  </ion-row>
+</ion-grid>
+<p>a</p>
+<p>b</p>
+<p>v</p>

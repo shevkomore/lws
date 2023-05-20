@@ -1,0 +1,24 @@
+.enlarged-text{
+  height: 1.3em;
+  width: fit-content;
+  white-space: nowrap;
+  
+  line-height: 1em;
+  margin: 4px;
+  
+  font-size: max(15px, min(4vw, 30px));
+  font-family: sans-serif;
+}
+.short{
+  min-width: 1em;
+  max-width: 2em !important;
+}
+.long{
+  min-width: 4em;
+  max-width: 100%;
+}
+.input-border{
+  border: 1px solid var(--ion-color-medium-tint);
+  border-radius: 0.2em;
+  padding-right: 2px;
+}
