@@ -4,6 +4,7 @@ import { TaskGroup } from "src/app/task-groups/task-group";
 import { Lw1Task1Component } from "./lw1-task1/lw1-task1.component";
 import { Lw1Task2Component } from "./lw1-task2/lw1-task2.component";
 import { Lw1Task3Component } from "./lw1-task3/lw1-task3.component";
+import { Lw1Task4Component } from "./lw1-task4/lw1-task4.component";
 
 export class Labwork1 extends TaskGroup{
     public override get Label(): InfoLabel {
@@ -40,6 +41,16 @@ export class Labwork1 extends TaskGroup{
                     +"непарні і при діленні на 5 дають в остачі 3."
                 },
                 component: Lw1Task3Component
+            },
+            {
+                info:{
+                    title: "Завдання 3",
+                    description: "Згенерувати матрицю розміром NxN. "
+                    +"Виокремити за допомогою кольору усі однакові за "
+                    +"модулем елементи. \n\n Замість таблиці зроблено "
+                    +"нескінченний список чисел "
+                },
+                component: Lw1Task4Component
             }
         ]
     }
