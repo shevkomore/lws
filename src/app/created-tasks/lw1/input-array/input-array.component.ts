@@ -25,7 +25,6 @@ export class InputArrayComponent implements OnInit {
     let n_inputs = this.surroundingText.length - 1
     this.rawInputs = new Array(n_inputs).fill("0")
     this.update()
-    console.log(this.surroundingText)
   }
 
   update(){
