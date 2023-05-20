@@ -17,7 +17,6 @@ export class InputArrayComponent implements OnInit {
   set surroundingText(value: string[]){
     if(this._surroundingText.length == 0){
       this._surroundingText = value.map((v,i) => {return {index:i,value:v}})
-      console.log(this.surroundingText)
       return
     }
     if(this._surroundingText.length == value.length)
