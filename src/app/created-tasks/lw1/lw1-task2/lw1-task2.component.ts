@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import { Labwork1 } from '../labwork1';
 import { Task } from 'src/app/task-groups/task'
-import { InputArrayEvent } from '../input-array/input-array-event';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { InputArrayComponent } from '../input-array/input-array.component';
+import { InputArrayComponent } from 'src/app/input-array/input-array.component';
+import { InputArrayEvent } from 'src/app/input-array/input-array-event';
 
 @Component({
   selector: 'app-lw1-task2',

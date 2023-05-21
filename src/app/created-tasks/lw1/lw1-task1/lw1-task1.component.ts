@@ -3,9 +3,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild } from '@angular/c
 import { IonicModule } from '@ionic/angular';
 import { Labwork1 } from '../labwork1';
 import { Task } from 'src/app/task-groups/task'
-import { InputArrayComponent } from '../input-array/input-array.component';
-import { InputArrayEvent } from '../input-array/input-array-event';
 import { ShowNanPipe } from '../show-nan-pipe';
+import { InputArrayComponent } from 'src/app/input-array/input-array.component';
+import { InputArrayEvent } from 'src/app/input-array/input-array-event';
 
 @Component({
   selector: 'app-lw1-task1',

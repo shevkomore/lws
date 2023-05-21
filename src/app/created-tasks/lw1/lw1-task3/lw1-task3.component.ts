@@ -3,8 +3,8 @@ import { Task } from 'src/app/task-groups/task';
 import { Labwork1 } from '../labwork1';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { InputArrayComponent } from '../input-array/input-array.component';
-import { InputArrayEvent } from '../input-array/input-array-event';
+import { InputArrayComponent } from 'src/app/input-array/input-array.component';
+import { InputArrayEvent } from 'src/app/input-array/input-array-event';
 
 @Component({
   selector: 'app-lw1-task3',

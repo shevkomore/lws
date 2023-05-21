@@ -5,7 +5,7 @@
             <ion-icon id="open-description-trigger-{{i}}" name="information-circle-outline" style="float: right;" color="secondary"></ion-icon>
             <ion-popover trigger="open-description-trigger-{{i}}" triggerAction="click">
                 <ng-template>
-                    <p class="ion-padding">{{task.info.description}}</p>
+                    <p class="ion-padding" [innerHTML]="task.info.description"></p>
                 </ng-template>
             </ion-popover>
         </ion-card-title>
