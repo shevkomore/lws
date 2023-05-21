@@ -25,3 +25,15 @@
 #container a {
   text-decoration: none;
 }
+
+.wider-menu{
+  --width: 30em;
+}
+
+.centered{
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+}

@@ -1,7 +1,7 @@
-<ion-menu contentId="main-content">
+<ion-menu contentId="main-content" class="wider-menu">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Select a task group:</ion-title>
+      <ion-title>Оберіть роботу:</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -24,13 +24,24 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Blank-ish
+      Лабораторні роботи з крос-платформного програмування
     </ion-title>
+    <ion-label class="ion-padding">
+      студента групи КН-32/2 Шевченка Ярослава
+    </ion-label>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="main-content">
-  <!--<ion-card><app-input-array [inputType]="'number'" [surroundingText]="['1','3']"></app-input-array></ion-card>-->
+  <ion-grid *ngIf="showHint" style="height: 100%">
+    <ion-row class="centered">
+        <h1>
+          Панель завдань
+        </h1>
+        <ion-label>Завдання будуть відображатися тут. Оберіть <ion-menu-toggle><a>роботу,</a></ion-menu-toggle> яку хочете переглянути.</ion-label>
+    </ion-row>
+  </ion-grid>
+  
   <app-task-group-view #groupView></app-task-group-view>
   
 </ion-content>

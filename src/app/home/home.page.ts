@@ -17,6 +17,7 @@ export class HomePage implements OnInit{
   @ViewChild("groupView", {read: TaskGroupComponent})
   groupView!: TaskGroupComponent
   taskList : IndexedInfoLabel[] = [];
+  showHint: boolean = true
 
   constructor(
     public tasks : TaskGroupLoadService
@@ -27,6 +28,7 @@ export class HomePage implements OnInit{
   }
 
   callTasks(who: IndexedInfoLabel){
+    this.showHint = false
     this.tasks.load(this.groupView, who)
   }
 }
