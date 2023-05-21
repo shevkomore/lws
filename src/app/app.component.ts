@@ -4,6 +4,7 @@ import { TaskGroupLoadService } from './task-groups/task-group-load.service';
 import { TestTaskGroup } from './created-tasks/test/test-task-group';
 import { TestTaskGroup2 } from './created-tasks/test2/test-task-group-2';
 import { Labwork1 } from './created-tasks/lw1/labwork1';
+import { Labwork2 } from './created-tasks/lw2/labwork2';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,9 @@ export class AppComponent{
   constructor(
     taskGroupLoadService: TaskGroupLoadService
   ) {
-    taskGroupLoadService.register(new TestTaskGroup())
-    taskGroupLoadService.register(new TestTaskGroup2())
+    // taskGroupLoadService.register(new TestTaskGroup())
+    // taskGroupLoadService.register(new TestTaskGroup2())
     taskGroupLoadService.register(new Labwork1())
+    taskGroupLoadService.register(new Labwork2())
   }
 }
