@@ -1,3 +1,5 @@
-<p>
-  lw2selector works!
-</p>
+<ion-item>
+  <ion-range *ngIf="core" [dualKnobs]="true" [min]="core.graphMin" [max]="core.graphMax"
+  [value]="{ lower: core.lastRange[0], upper: core.lastRange[1] }"
+  (ionChange)="onRangeChange($event)"></ion-range>
+</ion-item>

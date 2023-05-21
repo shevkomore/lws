@@ -1,9 +1,10 @@
-import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Task } from 'src/app/task-groups/task'
 import { Labwork2 } from '../labwork2';
 import Chart from 'chart.js/auto';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lw2graph',
@@ -13,7 +14,7 @@ import { IonicModule } from '@ionic/angular';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonicModule, CommonModule]
 })
-export class Lw2graphComponent extends Task<Labwork2> implements AfterViewInit {
+export class Lw2graphComponent extends Task<Labwork2> implements AfterViewInit, OnDestroy {
   @ViewChild('graphCanvas')
   private canvas!: ElementRef
 
@@ -23,13 +24,20 @@ export class Lw2graphComponent extends Task<Labwork2> implements AfterViewInit {
     super();
   }
 
+  private GraphUpdateSubscription?: Subscription
   ngAfterViewInit() {
     this.showChart()
+    this.GraphUpdateSubscription = this.core?.OnOutputGraphUpdate.subscribe(() => {
+      this.chart.data.datasets[0].data = this.core?.outputGraph.map(v => [v.x, v.y])
+      this.chart.update()
+    })
+  }
+  ngOnDestroy() {
+      this.GraphUpdateSubscription?.unsubscribe()
   }
 
+
   showChart(){
-    console.log(this.canvas?.nativeElement)
-    console.log(this.core?.outputGraph)
     this.chart = new Chart(this.canvas?.nativeElement, {
       type: 'line',
       options: {
@@ -51,11 +59,12 @@ export class Lw2graphComponent extends Task<Labwork2> implements AfterViewInit {
             borderColor: 'rgba(75,192,192,1)',
             borderDashOffset: 0.0,
             pointRadius: 1,
-            data: this.core?.outputGraph.map(v => v.y),
+            data: this.core?.outputGraph.map(v => [v.x, v.y]),
             spanGaps: false
           }
       ]
       }
     })
+    console.log(this.chart)
   }
 }
