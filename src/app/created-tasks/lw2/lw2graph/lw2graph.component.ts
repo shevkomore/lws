@@ -1,14 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Task } from 'src/app/task-groups/task'
+import { Labwork2 } from '../labwork2';
+import Chart from 'chart.js/auto';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-lw2graph',
   templateUrl: './lw2graph.component.html',
   styleUrls: ['./lw2graph.component.scss'],
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [IonicModule, CommonModule]
 })
-export class Lw2graphComponent  implements OnInit {
+export class Lw2graphComponent extends Task<Labwork2> implements AfterViewInit {
+  @ViewChild('graphCanvas')
+  private canvas!: ElementRef
 
-  constructor() { }
+  chart?: any
 
-  ngOnInit() {}
+  constructor() {
+    super();
+  }
 
+  ngAfterViewInit() {
+    this.showChart()
+  }
+
+  showChart(){
+    console.log(this.canvas?.nativeElement)
+    console.log(this.core?.outputGraph)
+    this.chart = new Chart(this.canvas?.nativeElement, {
+      type: 'line',
+      options: {
+        animation: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: false
+          }
+        }
+      },
+      data:{
+        labels: this.core?.outputGraph.map(v => v.x.toFixed(1)),
+        datasets:[
+          {
+            fill: false,
+            borderColor: 'rgba(75,192,192,1)',
+            borderDashOffset: 0.0,
+            pointRadius: 1,
+            data: this.core?.outputGraph.map(v => v.y),
+            spanGaps: false
+          }
+      ]
+      }
+    })
+  }
 }

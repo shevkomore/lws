@@ -4,6 +4,7 @@ import { TaskGroup } from "src/app/task-groups/task-group";
 import { Lw2selectorComponent } from "./lw2selector/lw2selector.component";
 import { UnaryFunction } from "rxjs";
 import { Coordinate } from "./coordinate";
+import { Lw2graphComponent } from "./lw2graph/lw2graph.component";
 
 export class Labwork2 extends TaskGroup{
     public override get Label(): InfoLabel {
@@ -19,10 +20,17 @@ export class Labwork2 extends TaskGroup{
                     title: "Налаштування",
                     description: "<h3>Завдання:</h3> "
                     +"<p>Створити додаток для табулювання і виведення на екран значення функції, також побудувати графік функції:"
-                    +'<img src="src/assets/lw2_general_function.png"></img>'
+                    +'<img src="assets/lw2_general_function.png"></img>'
                     +"<h3>Компоненти:</h3>"
                 },
                 component: Lw2selectorComponent
+            },
+            {
+                info:{
+                    title: "Отриманий граф",
+                    description: "Граф отримано з трьох функцій, між якими переходимо на вказаних позиціях."
+                },
+                component: Lw2graphComponent
             }
         ]
     }
@@ -36,11 +44,19 @@ export class Labwork2 extends TaskGroup{
         (x) => Math.pow(Math.abs(Math.pow(Math.sin(x), 2) + 1), 2 * x)
     ])
 
+    constructor(){
+        super();
+        this.updateOutputGraph([0])
+    }
+
+    //Graph-related methods
     pregenerateGraphs(formulas: UnaryFunction<number,number>[]){
-        let res: Coordinate[][] = new Array(formulas.length).fill([])
+        let res: Coordinate[][] = []
+        for(let i = 0; i < formulas.length; ++i)
+            res[i] = []
         for(let x = this.graphMin; x <= this.graphMax; x += this.graphStep)
             for(let i = 0; i < formulas.length; ++i)
-                res[i].push({x:x, y:formulas[i](x)})
+                res[i][res[i].length] = {x:x, y:formulas[i](x)}
         return res
     }
 
@@ -49,16 +65,17 @@ export class Labwork2 extends TaskGroup{
         transitions.sort()
         this.presetGraphs.forEach(a => a.sort(v => v.x))
         this.outputGraph = []
+        console.log(this.presetGraphs)
 
         let last_graph_index = this.presetGraphs.length - 1
         let graph_index = 0
         //for each value of x 
         for(let i = 0; i < this.presetGraphs[graph_index].length; ++i){
             //while there are any more transitions
-            while(transitions.length < graph_index 
+            while(graph_index < transitions.length
                 //and any more presetGraphs
                 && graph_index < last_graph_index
-                //and we reach transitions
+                //AND we reach transitions
                 && transitions[graph_index] < this.presetGraphs[graph_index][i].x){
                     //move to next graph
                     graph_index += 1
