@@ -1,10 +1,10 @@
+<ion-item style="height:100em">
 <!--Start game menu-->
   <ion-modal [isOpen]="!isGameSet">
     <ng-template>
       <form [formGroup]="gameSetupForm" (ngSubmit)="startGame()">
         <ion-item>
-          <ion-label position="left">Кількість раундів:</ion-label>
-          <ion-input id="num_rounds" type="number" formControlName="numRounds" value="4"></ion-input>
+          <ion-input label="Кількість раундів:" id="num_rounds" type="number" formControlName="numRounds" value="4"></ion-input>
         </ion-item>
         <ion-button color="tertiary" type="submit" [disabled]="!gameSetupForm.valid">Почати</ion-button>
       </form>
@@ -12,40 +12,42 @@
   </ion-modal>
 
 <!--Game screen-->
-<ion-split-pane when="xs" contentId="main" *ngIf="isGameStarted()">
-<ion-item contentId="main">
-  <app-dice-display *ngIf="currentRound" [data]="currentRound.playerDice[1]"></app-dice-display>
-  <ion-button *ngIf="isGameOngoing()" (click)="nextRoll()">Кинути</ion-button>
-  <ion-button *ngIf="isGameFinished()" (click)="finishGame()">Завершити</ion-button>
-  <app-dice-display *ngIf="currentRound" [data]="currentRound.playerDice[0]"></app-dice-display>
-</ion-item>
-<ion-grid>
+<ion-grid *ngIf="isGameStarted">
+<ion-col style="height: 100em">
+  <app-dice-display *ngIf="currentRound" [data]="currentRound.dicePerPlayer[1]"></app-dice-display>
+  <ion-button *ngIf="isGameOngoing" (click)="nextRoll()">Кинути</ion-button>
+  <ion-button *ngIf="isGameFinished" (click)="finishGame()">Завершити</ion-button>
+  <app-dice-display *ngIf="currentRound" [data]="currentRound.dicePerPlayer[0]"></app-dice-display>
+</ion-col>
+<ion-col>
   <ion-row *ngFor="let round of roundsList; index as i">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>Раунд {{i}}</ion-card-subtitle>
+        <ion-card-subtitle>Раунд {{i+1}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content class="ion-padding">
-        {{round.playerDice[0].total}} vs. {{round.playerDice[1].total}}
+        {{getDiceTotal(round, 0)}} vs. {{getDiceTotal(round, 1)}}
       </ion-card-content>
     </ion-card>
   </ion-row>
+</ion-col>
 </ion-grid>
-</ion-split-pane>
 
-<ion-modal [isOpen]="displayEndScreen && gameState">
+<ion-modal [isOpen]="displayEndScreen">
   <ng-template>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>{{gameState?.winner == 0?"Перемога!":"Програш"}}</ion-card-title>
-        <ion-card-subtitle>Найкращі ходи:</ion-card-subtitle>
+        <ion-card-title><h1>{{getWinner() == 0?"Перемога!":"Програш"}}</h1></ion-card-title>
+        <ion-card-subtitle><h2>Найкращі ходи:</h2></ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <h2>Ви:</h2>
-        <h3>{{gameState?gameState.bestMoves[0]:"missing"}}</h3>
+        <h3>{{getBestMoves(0)}}</h3>
         <h2>Опонент:</h2>
-        <h3>{{gameState?gameState.bestMoves[1]:"missing"}}</h3>
+        <h3>{{getBestMoves(1)}}</h3>
+        <ion-button (click)="displayEndScreen = false">Закрити</ion-button>
       </ion-card-content>
     </ion-card>
   </ng-template>
 </ion-modal>
+</ion-item>
