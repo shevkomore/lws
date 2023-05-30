@@ -42,7 +42,7 @@ export class Labwork2 extends TaskGroup{
     private graphStep: number = 0.3
     private maxValue: number = 1000
     presetGraphs: Coordinate[][] = this.pregenerateGraphs([
-        (x) => Math.pow(x, 5) / Math.tan(2 * x * x * x),
+        //(x) => Math.pow(x, 5) / Math.tan(2 * x * x * x),
         (x) => Math.pow(Math.pow(x, 4) + 3, 1/5),
         (x) => Math.pow(Math.abs(Math.pow(Math.sin(x), 2) + 1), 2 * x)
     ])

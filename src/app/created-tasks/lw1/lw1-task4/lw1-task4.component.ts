@@ -66,7 +66,7 @@ export class Lw1Task4Component extends Task<Labwork1> implements OnInit {
       green: Math.floor(Math.random() *125)+125,
       blue: Math.floor(Math.random() *125)+125
     }
-    return GenerateGradientStyleTemplate(angle,color,width)
+    return GenerateGradientStyleTemplate(angle,color,width,scale)
   }
 
 }
